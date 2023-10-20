@@ -1,10 +1,30 @@
 Logging: 
 A logging level is a way of classifying the entries in your log file in terms of urgency. Classifying helps filter your log files during search and helps control the amount of information in your logs
 
+
+Logger logger=LoggerFactory.getLogger(LoggingController.class);
+	@RequestMapping("/logging")
+	public String logging() {
+        logger.trace("A TRACE Message");
+        logger.debug("A DEBUG Message");
+        logger.info("An INFO Message");
+        logger.warn("A WARN Message");
+        logger.error("An ERROR Message");
+
+        return "Check out the Logs to see the output...";
+	}
+
+
 The standard ranking of logging levels is as follows: ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < OFF
 
 
 This OFF level is used to turn off logging and is the greatest possible rank. 
 The FATAL level of logging shows that the application’s situation is catastrophic, such that an important function is not working. For example, you can use FATAL log level if the application is unable to connect to the data store.
 Unlike the FATAL logging level, error does not mean your application is aborting. Instead, there is just an inability to access a service or a file.
-WARN means you are not quite sure whether the problem will recur or remain. You may not notice any harm to your application at this point
+WARN means you are not quite sure whether the problem will recur or remain. You may not notice any harm to your application at this point.
+
+
+INFO messages are like the normal behavior of applications. They state what happened. For example, if a particular service stopped or started or you added something to the database.
+
+DEBUG logging level is used to fetch information needed to diagnose, troubleshoot, or test an application. This ensures a smooth running application
+ALL log level logs any logging levels that are defined
