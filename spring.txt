@@ -1,0 +1,6 @@
+@SpringBootApplication is a higher-level annotation that includes @EnableAutoConfiguration along with other annotations like:
+@ComponentScan: enable @Component scan on the package where the application is located
+@Configuration: allow to register extra beans in the context or import additional configuration classes
+@EnableAutoConfiguration is used specifically to enable the auto-configuration feature of Spring Boot
+
+@SpringBootApplication-@ComponentScan+@EnableAutoConfiguration+@ComponentScan+@Configuration

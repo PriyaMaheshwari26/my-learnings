@@ -1,0 +1,5 @@
+CORS: cross origin resource sharing
+	--allow or restrict web pages in one domain to make requests for resources from a different domain
+CSRF: Cross-Site Request Forgery
+	--CSRF is an attack that tricks a user into making an unintended or unauthorized request 
+	to a different website without their knowledge
