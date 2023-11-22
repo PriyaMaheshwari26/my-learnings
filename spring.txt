@@ -1,6 +1,76 @@
-@SpringBootApplication is a higher-level annotation that includes @EnableAutoConfiguration along with other annotations like:
-@ComponentScan: enable @Component scan on the package where the application is located
-@Configuration: allow to register extra beans in the context or import additional configuration classes
-@EnableAutoConfiguration is used specifically to enable the auto-configuration feature of Spring Boot
+------SPRING FRAMEWORK------
 
-@SpringBootApplication-@ComponentScan+@EnableAutoConfiguration+@ComponentScan+@Configuration
+Dependency Injection (DI) is a fundamental concept in the Spring Framework, a popular Java-based framework used for building enterprise-level applications. Dependency Injection is a design pattern that promotes the separation of concerns and the decoupling of components in an application, making it easier to manage and test.
+
+In Spring, Dependency Injection is primarily achieved through two approaches: constructor-based injection and setter-based injection. Here's an overview of each:
+
+*Constructor-Based Injection:
+Constructor injection is a form of DI where the dependencies of a class are injected through its constructor. Spring container manages the instantiation of objects and provides the necessary dependencies to constructors.
+
+public class MyService {
+    private final MyRepository repository;
+
+    public MyService(MyRepository repository) {
+        this.repository = repository;
+    }
+}
+
+In this example, MyService depends on MyRepository, and Spring will inject a MyRepository instance when creating a MyService object.
+
+*Setter-Based Injection:
+Setter injection involves providing setter methods in a class for each of its dependencies. The Spring container uses these setter methods to inject the required dependencies.
+public class MyService {
+    private MyRepository repository;
+
+    public void setRepository(MyRepository repository) {
+        this.repository = repository;
+    }
+}
+
+In this case, Spring will invoke the setRepository method to set the MyRepository dependency.
+
+To enable and configure Dependency Injection in Spring, you need to set up the Spring IoC (Inversion of Control) container, which manages the beans (components) and their dependencies. Here's a basic example of how to configure and use Dependency Injection in Spring:
+
+xml
+<!-- applicationContext.xml -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Define beans -->
+    <bean id="myRepository" class="com.example.MyRepository" />
+    <bean id="myService" class="com.example.MyService">
+        <property name="repository" ref="myRepository" />
+    </bean>
+</beans>
+In this XML configuration, you define beans for both MyRepository and MyService. The property element within the myService bean definition is used for setter-based dependency injection.
+
+With Dependency Injection in place, you can use Spring's IoC container to manage object creation and the injection of dependencies, making your application more modular and easier to maintain.
+
+*Access bean in java:
+// Load the Spring context from the XML configuration file
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+	MyService myBean = (MyService) context.getBean("myService");
+//use the bean
+	myBean.doSomething();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
